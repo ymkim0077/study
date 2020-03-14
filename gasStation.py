@@ -85,7 +85,8 @@ def tank_truck(env, fuel_pump):
 def car_generator(env, gas_station, fuel_pump):
     """Generate new cars that arrive at the gas station."""
     for i in itertools.count():
-        yield env.timeout(random.randint(*T_INTER))
+        t = random.randint(*T_INTER)
+        yield env.timeout(t)
         env.process(car('Car %d' % i, env, gas_station, fuel_pump))
 
 
